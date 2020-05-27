@@ -1,4 +1,5 @@
 # Go library to shorten handling of impossible conditions
+[![GoDoc](https://godoc.org/github.com/ridge/must?status.svg)](http://godoc.org/github.com/ridge/must) [![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/github.com/ridge/must)
 
     must.OK(os.Unsetenv("FOO"))
     bs := must.Bytes(json.Marshal(dataStructureDefinedInCode))
