@@ -69,5 +69,5 @@ import (
 	genFunc(fh, "IOWriter", "io.Writer")
 	genFunc(fh, "NetIP", "net.IP")
 	genFunc(fh, "NetListener", "net.Listener")
-	genFunc(fh, "NetURL", "url.URL")
+	genFunc(fh, "NetURL", "*url.URL")
 }

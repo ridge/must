@@ -286,7 +286,7 @@ func NetListener(arg net.Listener, err error) net.Listener {
 }
 
 // NetURL panics on error, returns the first argument otherwise
-func NetURL(arg url.URL, err error) url.URL {
+func NetURL(arg *url.URL, err error) *url.URL {
 	OK(err)
 	return arg
 }
