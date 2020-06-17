@@ -39,7 +39,7 @@ func OK(err error) {
 	}
 }
 
-// Do calls the function and panics on error
+// Do calls the function and panics on error.
 //
 // For use primarily in defer statements.
 //
