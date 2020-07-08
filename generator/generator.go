@@ -47,9 +47,9 @@ package must
 import (
 	"io"
 	"net"
-	"os"
 	"net/http"
 	"net/url"
+	"os"
 )
 `)
 
