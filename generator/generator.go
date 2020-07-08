@@ -48,6 +48,7 @@ import (
 	"io"
 	"net"
 	"os"
+	"net/http"
 	"net/url"
 )
 `)
