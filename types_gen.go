@@ -5,8 +5,9 @@ package must
 import (
 	"io"
 	"net"
-	"os"
+	"net/http"
 	"net/url"
+	"os"
 )
 
 // Uint8 panics on error, returns the first argument otherwise
@@ -287,6 +288,12 @@ func NetListener(arg net.Listener, err error) net.Listener {
 
 // NetURL panics on error, returns the first argument otherwise
 func NetURL(arg *url.URL, err error) *url.URL {
+	OK(err)
+	return arg
+}
+
+// HTTPRequest panics on error, returns the first argument otherwise
+func HTTPRequest(arg *http.Request, err error) *http.Request {
 	OK(err)
 	return arg
 }
