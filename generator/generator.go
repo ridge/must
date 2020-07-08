@@ -71,4 +71,5 @@ import (
 	genFunc(fh, "NetIP", "net.IP")
 	genFunc(fh, "NetListener", "net.Listener")
 	genFunc(fh, "NetURL", "*url.URL")
+	genFunc(fh, "HTTPRequest", "*http.Request")
 }
