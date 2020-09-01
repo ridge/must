@@ -72,4 +72,5 @@ import (
 	genFunc(fh, "NetListener", "net.Listener")
 	genFunc(fh, "NetURL", "*url.URL")
 	genFunc(fh, "HTTPRequest", "*http.Request")
+	genFunc(fh, "HTTPHandler", "http.Handler")
 }
