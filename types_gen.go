@@ -297,3 +297,9 @@ func HTTPRequest(arg *http.Request, err error) *http.Request {
 	OK(err)
 	return arg
 }
+
+// HTTPHandler panics on error, returns the first argument otherwise
+func HTTPHandler(arg http.Handler, err error) http.Handler {
+	OK(err)
+	return arg
+}
