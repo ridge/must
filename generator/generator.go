@@ -73,4 +73,5 @@ import (
 	genFunc(fh, "NetURL", "*url.URL")
 	genFunc(fh, "HTTPRequest", "*http.Request")
 	genFunc(fh, "HTTPHandler", "http.Handler")
+	genFunc(fh, "Time", "time.Time")
 }

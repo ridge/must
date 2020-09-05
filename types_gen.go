@@ -303,3 +303,9 @@ func HTTPHandler(arg http.Handler, err error) http.Handler {
 	OK(err)
 	return arg
 }
+
+// Time panics on error, returns the first argument otherwise
+func Time(arg time.Time, err error) time.Time {
+	OK(err)
+	return arg
+}
