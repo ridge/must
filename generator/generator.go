@@ -45,11 +45,20 @@ func main() {
 package must
 
 import (
+	"crypto/ecdsa"
+	"crypto/ed25519"
+	"crypto/rsa"
+	"crypto/x509"
+	"hash"
+	htmltemplate "html/template"
 	"io"
+	"math/big"
 	"net"
 	"net/http"
 	"net/url"
 	"os"
+	texttemplate "text/template"
+	"time"
 )
 `)
 
@@ -72,6 +81,19 @@ import (
 	genFunc(fh, "NetListener", "net.Listener")
 	genFunc(fh, "NetURL", "*url.URL")
 	genFunc(fh, "HTTPRequest", "*http.Request")
+	genFunc(fh, "HTTPResponse", "*http.Response")
 	genFunc(fh, "HTTPHandler", "http.Handler")
+	genFunc(fh, "HTTPTransport", "*http.Transport")
 	genFunc(fh, "Time", "time.Time")
+	genFunc(fh, "HTMLTemplate", "*htmltemplate.Template")
+	genFunc(fh, "TextTemplate", "*texttemplate.Template")
+	genFunc(fh, "Hash", "hash.Hash")
+	genFunc(fh, "BigInt", "*big.Int")
+	genFunc(fh, "X509Certificate", "*x509.Certificate")
+	genFunc(fh, "RSAPublicKey", "*rsa.PublicKey")
+	genFunc(fh, "RSAPrivateKey", "*rsa.PrivateKey")
+	genFunc(fh, "ECDSAPublicKey", "*ecdsa.PublicKey")
+	genFunc(fh, "ECDSAPrivateKey", "*ecdsa.PrivateKey")
+	genFunc(fh, "ED25519PublicKey", "*ed25519.PublicKey")
+	genFunc(fh, "ED25519PrivateKey", "*ed25519.PrivateKey")
 }

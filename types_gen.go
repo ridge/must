@@ -3,11 +3,20 @@
 package must
 
 import (
+	"crypto/ecdsa"
+	"crypto/ed25519"
+	"crypto/rsa"
+	"crypto/x509"
+	"hash"
+	htmltemplate "html/template"
 	"io"
+	"math/big"
 	"net"
 	"net/http"
 	"net/url"
 	"os"
+	texttemplate "text/template"
+	"time"
 )
 
 // Uint8 panics on error, returns the first argument otherwise
@@ -298,14 +307,92 @@ func HTTPRequest(arg *http.Request, err error) *http.Request {
 	return arg
 }
 
+// HTTPResponse panics on error, returns the first argument otherwise
+func HTTPResponse(arg *http.Response, err error) *http.Response {
+	OK(err)
+	return arg
+}
+
 // HTTPHandler panics on error, returns the first argument otherwise
 func HTTPHandler(arg http.Handler, err error) http.Handler {
 	OK(err)
 	return arg
 }
 
+// HTTPTransport panics on error, returns the first argument otherwise
+func HTTPTransport(arg *http.Transport, err error) *http.Transport {
+	OK(err)
+	return arg
+}
+
 // Time panics on error, returns the first argument otherwise
 func Time(arg time.Time, err error) time.Time {
+	OK(err)
+	return arg
+}
+
+// HTMLTemplate panics on error, returns the first argument otherwise
+func HTMLTemplate(arg *htmltemplate.Template, err error) *htmltemplate.Template {
+	OK(err)
+	return arg
+}
+
+// TextTemplate panics on error, returns the first argument otherwise
+func TextTemplate(arg *texttemplate.Template, err error) *texttemplate.Template {
+	OK(err)
+	return arg
+}
+
+// Hash panics on error, returns the first argument otherwise
+func Hash(arg hash.Hash, err error) hash.Hash {
+	OK(err)
+	return arg
+}
+
+// BigInt panics on error, returns the first argument otherwise
+func BigInt(arg *big.Int, err error) *big.Int {
+	OK(err)
+	return arg
+}
+
+// X509Certificate panics on error, returns the first argument otherwise
+func X509Certificate(arg *x509.Certificate, err error) *x509.Certificate {
+	OK(err)
+	return arg
+}
+
+// RSAPublicKey panics on error, returns the first argument otherwise
+func RSAPublicKey(arg *rsa.PublicKey, err error) *rsa.PublicKey {
+	OK(err)
+	return arg
+}
+
+// RSAPrivateKey panics on error, returns the first argument otherwise
+func RSAPrivateKey(arg *rsa.PrivateKey, err error) *rsa.PrivateKey {
+	OK(err)
+	return arg
+}
+
+// ECDSAPublicKey panics on error, returns the first argument otherwise
+func ECDSAPublicKey(arg *ecdsa.PublicKey, err error) *ecdsa.PublicKey {
+	OK(err)
+	return arg
+}
+
+// ECDSAPrivateKey panics on error, returns the first argument otherwise
+func ECDSAPrivateKey(arg *ecdsa.PrivateKey, err error) *ecdsa.PrivateKey {
+	OK(err)
+	return arg
+}
+
+// ED25519PublicKey panics on error, returns the first argument otherwise
+func ED25519PublicKey(arg *ed25519.PublicKey, err error) *ed25519.PublicKey {
+	OK(err)
+	return arg
+}
+
+// ED25519PrivateKey panics on error, returns the first argument otherwise
+func ED25519PrivateKey(arg *ed25519.PrivateKey, err error) *ed25519.PrivateKey {
 	OK(err)
 	return arg
 }
