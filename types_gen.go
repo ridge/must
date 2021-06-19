@@ -271,6 +271,12 @@ func OSFileInfos(arg []os.FileInfo, err error) []os.FileInfo {
 	return arg
 }
 
+// IOReader panics on error, returns the first argument otherwise
+func IOReader(arg io.Reader, err error) io.Reader {
+	OK(err)
+	return arg
+}
+
 // IOReadCloser panics on error, returns the first argument otherwise
 func IOReadCloser(arg io.ReadCloser, err error) io.ReadCloser {
 	OK(err)

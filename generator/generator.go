@@ -75,6 +75,7 @@ import (
 	genFunc(fh, "OSFile", "*os.File")
 	genFunc(fh, "OSFileInfo", "os.FileInfo")
 	genFunc(fh, "OSFileInfos", "[]os.FileInfo")
+	genFunc(fh, "IOReader", "io.Reader")
 	genFunc(fh, "IOReadCloser", "io.ReadCloser")
 	genFunc(fh, "IOWriter", "io.Writer")
 	genFunc(fh, "NetIP", "net.IP")
