@@ -9,6 +9,7 @@ import (
 	"crypto/x509"
 	"hash"
 	htmltemplate "html/template"
+	"inet.af/netaddr"
 	"io"
 	"math/big"
 	"net"
@@ -399,6 +400,11 @@ func ED25519PublicKey(arg *ed25519.PublicKey, err error) *ed25519.PublicKey {
 
 // ED25519PrivateKey panics on error, returns the first argument otherwise
 func ED25519PrivateKey(arg *ed25519.PrivateKey, err error) *ed25519.PrivateKey {
+	OK(err)
+	return arg
+}
+
+func IPPrefix(arg netaddr.IPPrefix, err error) netaddr.IPPrefix {
 	OK(err)
 	return arg
 }
