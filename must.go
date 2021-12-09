@@ -30,6 +30,10 @@
 //
 package must
 
+import (
+	"time"
+)
+
 //go:generate go run ./generator types_gen.go
 
 // OK panics on error
@@ -54,4 +58,48 @@ func OK(err error) {
 //
 func Do(fn func() error) {
 	OK(fn())
+}
+
+// DoRetryable calls the function until no error is returned or when the number of attempts has reached.
+// If all attempts fail, DoRetryable panics with the last error received.
+//
+// DoRetryable is an extension for Do(), used for a variety of functions, example:
+//
+//	func StoreEncrypted(ctx context.Context, u User, password string) error {
+//		must.DoRetryable(func() error {
+//			return encrypt(ctx, &password)
+//		}, 5) // will try to encrypt 5 times before exhasuted
+//
+//		u.SetPassword(password)
+//		return nil
+//	}
+//
+// 	func encrypt(ctx context.Context, s *string) error {
+//		if s* == "" {
+//			return errors.new("empty string is not supported")
+//		}
+//		return vault.Encrypt(ctx, s)
+// 	}
+func DoRetryable(fn func() error, attempts int) {
+	DoRetryableStall(fn, attempts, 0)
+}
+
+// DoRetryableStall is the same as DoRetryable, but only that it delays every attempt by the given duration. Example:
+//	func StoreEncrypted(ctx context.Context, u User, password string) error {
+//		must.DoRetryable(func() error {
+//			return encrypt(ctx, &password)
+//		}, 5, 1 * time.Second)
+//
+//		u.SetPassword(password)
+//		return nil
+//	}
+func DoRetryableStall(fn func() error, attempts int, d time.Duration) {
+	var err error
+	for i := 0; i < attempts; i++ {
+		if err = fn(); err == nil {
+			return
+		}
+		time.Sleep(d)
+	}
+	panic(err)
 }
