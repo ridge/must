@@ -15,7 +15,7 @@ is
         panic(err)
     }
     defer func() {
-        if err := f.Close(); err != nil{
+        if err := f.Close(); err != nil {
             panic(err)
         }
     }()
