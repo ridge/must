@@ -97,4 +97,5 @@ import (
 	genFunc(fh, "ECDSAPrivateKey", "*ecdsa.PrivateKey")
 	genFunc(fh, "ED25519PublicKey", "*ed25519.PublicKey")
 	genFunc(fh, "ED25519PrivateKey", "*ed25519.PrivateKey")
+	genFunc(fh, "TLSConfig", "*tls.Config")
 }
