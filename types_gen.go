@@ -6,6 +6,7 @@ import (
 	"crypto/ecdsa"
 	"crypto/ed25519"
 	"crypto/rsa"
+	"crypto/tls"
 	"crypto/x509"
 	"hash"
 	htmltemplate "html/template"
@@ -399,6 +400,12 @@ func ED25519PublicKey(arg *ed25519.PublicKey, err error) *ed25519.PublicKey {
 
 // ED25519PrivateKey panics on error, returns the first argument otherwise
 func ED25519PrivateKey(arg *ed25519.PrivateKey, err error) *ed25519.PrivateKey {
+	OK(err)
+	return arg
+}
+
+// TLSConfig panics on error, return the first argument otherwise
+func TLSConfig(arg *tls.Config, err error) *tls.Config {
 	OK(err)
 	return arg
 }
