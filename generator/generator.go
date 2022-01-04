@@ -73,6 +73,7 @@ import (
 		genFuncs(fh, typ)
 	}
 	genFunc(fh, "Any", "interface{}")
+	genFunc(fh, "OSDirEntries", "[]os.DirEntry")
 	genFunc(fh, "OSFile", "*os.File")
 	genFunc(fh, "OSFileInfo", "os.FileInfo")
 	genFunc(fh, "OSFileInfos", "[]os.FileInfo")
