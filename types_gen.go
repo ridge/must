@@ -254,6 +254,12 @@ func Any(arg interface{}, err error) interface{} {
 	return arg
 }
 
+// OSDirEntries panics on error, returns the first argument otherwise
+func OSDirEntries(arg []os.DirEntry, err error) []os.DirEntry {
+	OK(err)
+	return arg
+}
+
 // OSFile panics on error, returns the first argument otherwise
 func OSFile(arg *os.File, err error) *os.File {
 	OK(err)
