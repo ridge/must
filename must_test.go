@@ -3,36 +3,63 @@ package must
 import (
 	"errors"
 	"os"
+	"reflect"
 	"testing"
 	"time"
-
-	"github.com/stretchr/testify/assert"
 )
+
+func capturePanic(f func()) (ret interface{}) {
+	defer func() {
+		ret = recover()
+	}()
+	f()
+	return nil
+}
 
 func TestOK(t *testing.T) {
 	e := errors.New("")
-	assert.PanicsWithValue(t, e, func() { OK(e) })
-	assert.NotPanics(t, func() { OK(nil) })
+
+	if capturePanic(func() { OK(e) }) != e {
+		t.Errorf("OK(non-nil-error) did not panic with the passed error")
+	}
+
+	if capturePanic(func() { OK(nil) }) != nil {
+		t.Errorf("OK(nil) panicked")
+	}
 }
 
 func TestDo(t *testing.T) {
 	e := errors.New("")
-	assert.PanicsWithValue(t, e, func() {
+
+	ret := capturePanic(func() {
 		Do(func() error {
 			return e
 		})
 	})
-	assert.NotPanics(t, func() {
+	if ret != e {
+		t.Errorf("Do({return e}) did not panic with the returned error")
+	}
+
+	ret = capturePanic(func() {
 		Do(func() error {
 			return nil
 		})
 	})
+	if ret != nil {
+		t.Errorf("Do({return nil}) panicked")
+	}
 }
 
 func TestInt(t *testing.T) {
 	e := errors.New("")
-	assert.PanicsWithValue(t, e, func() { Int(10, e) })
-	assert.Equal(t, 10, Int(10, nil))
+
+	if capturePanic(func() { Int(10, e) }) != e {
+		t.Errorf("Int(10, non-nil-error) did not panic with the passed error")
+	}
+
+	if Int(10, nil) != 10 {
+		t.Errorf("Int(10, nil) did not return 10")
+	}
 }
 
 type fakeFileInfo struct {
@@ -66,8 +93,11 @@ func TestOSFileInfos(t *testing.T) {
 	e := errors.New("")
 	fis := []os.FileInfo{fakeFileInfo{}}
 
-	assert.PanicsWithValue(t, e, func() {
-		OSFileInfos(fis, e)
-	})
-	assert.Equal(t, fis, OSFileInfos(fis, nil))
+	if capturePanic(func() { OSFileInfos(fis, e) }) != e {
+		t.Errorf("OSFileInfos(fis, non-nil-error) did not panic with the passed error")
+	}
+
+	if !reflect.DeepEqual(OSFileInfos(fis, nil), fis) {
+		t.Errorf("OSFileInfos(fis, nil) did not return fis")
+	}
 }
