@@ -2,10 +2,7 @@ package must
 
 import (
 	"errors"
-	"os"
-	"reflect"
 	"testing"
-	"time"
 )
 
 func capturePanic(f func()) (ret interface{}) {
@@ -28,6 +25,57 @@ func TestOK(t *testing.T) {
 	}
 }
 
+func TestOK1(t *testing.T) {
+	e := errors.New("")
+
+	if capturePanic(func() { OK1(10, e) }) != e {
+		t.Errorf("OK1(..., non-nil-error) did not panic with the passed error")
+	}
+
+	if OK1(10, nil) != 10 {
+		t.Errorf("OK1(10, nil) did not return first argument")
+	}
+}
+
+func TestOK2(t *testing.T) {
+	e := errors.New("")
+
+	if capturePanic(func() { OK2(10, 'c', e) }) != e {
+		t.Errorf("OK2(..., non-nil-error) did not panic with the passed error")
+	}
+
+	v1, v2 := OK2(10, 'c', nil)
+	if v1 != 10 || v2 != 'c' {
+		t.Errorf("OK2(10, 'c', nil) did not return first arguments")
+	}
+}
+
+func TestOK3(t *testing.T) {
+	e := errors.New("")
+
+	if capturePanic(func() { OK3(10, 'c', 7.0, e) }) != e {
+		t.Errorf("OK3(..., non-nil-error) did not panic with the passed error")
+	}
+
+	v1, v2, v3 := OK3(10, 'c', 7.0, nil)
+	if v1 != 10 || v2 != 'c' || v3 != 7.0 {
+		t.Errorf("OK3(10, 'c', 7.0f, nil) did not return first arguments")
+	}
+}
+
+func TestOK4(t *testing.T) {
+	e := errors.New("")
+
+	if capturePanic(func() { OK4(10, 'c', 7.0, "h", e) }) != e {
+		t.Errorf("OK4(..., non-nil-error) did not panic with the passed error")
+	}
+
+	v1, v2, v3, v4 := OK4(10, 'c', 7.0, "h", nil)
+	if v1 != 10 || v2 != 'c' || v3 != 7.0 || v4 != "h" {
+		t.Errorf("OK4(10, 'c', 7.0, \"h\", nil) did not return first arguments")
+	}
+}
+
 func TestDo(t *testing.T) {
 	e := errors.New("")
 
@@ -47,57 +95,5 @@ func TestDo(t *testing.T) {
 	})
 	if ret != nil {
 		t.Errorf("Do({return nil}) panicked")
-	}
-}
-
-func TestInt(t *testing.T) {
-	e := errors.New("")
-
-	if capturePanic(func() { Int(10, e) }) != e {
-		t.Errorf("Int(10, non-nil-error) did not panic with the passed error")
-	}
-
-	if Int(10, nil) != 10 {
-		t.Errorf("Int(10, nil) did not return 10")
-	}
-}
-
-type fakeFileInfo struct {
-}
-
-func (fakeFileInfo) Name() string {
-	return ""
-}
-
-func (fakeFileInfo) Size() int64 {
-	return 0
-}
-
-func (fakeFileInfo) Mode() os.FileMode {
-	return 0
-}
-
-func (fakeFileInfo) ModTime() time.Time {
-	return time.Time{}
-}
-
-func (fakeFileInfo) IsDir() bool {
-	return false
-}
-
-func (fakeFileInfo) Sys() interface{} {
-	return nil
-}
-
-func TestOSFileInfos(t *testing.T) {
-	e := errors.New("")
-	fis := []os.FileInfo{fakeFileInfo{}}
-
-	if capturePanic(func() { OSFileInfos(fis, e) }) != e {
-		t.Errorf("OSFileInfos(fis, non-nil-error) did not panic with the passed error")
-	}
-
-	if !reflect.DeepEqual(OSFileInfos(fis, nil), fis) {
-		t.Errorf("OSFileInfos(fis, nil) did not return fis")
 	}
 }

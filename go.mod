@@ -1,3 +1,3 @@
-module github.com/ridge/must
+module github.com/ridge/must/v2
 
-go 1.14
+go 1.18
