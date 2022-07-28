@@ -2,7 +2,8 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/ridge/must.svg)](https://pkg.go.dev/github.com/ridge/must)
 
     must.OK(os.Unsetenv("FOO"))
-    bs := must.Bytes(json.Marshal(dataStructureDefinedInCode))
+    bs := must.OK1(json.Marshal(dataStructureDefinedInCode))
+    ip, n := must.OK2(net.ParseCIDR("10.0.0.1/8"))
     defer must.Do(f.Close)
 
 is
@@ -11,6 +12,10 @@ is
          panic(err)
     }
     bs, err := json.Marshal(dataStructureDefinedInCode)
+    if err != nil {
+        panic(err)
+    }
+    ip, n, err := net.ParseCIDR("10.0.0.1/8")
     if err != nil {
         panic(err)
     }
