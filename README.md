@@ -57,7 +57,7 @@ for programming errors and impossible conditions.
 
 ## Legal
 
-Copyright Tectonic Networks, Inc.
+Copyright Tectonic Labs Ltd.
 
 Licensed under [Apache 2.0](LICENSE) license.
 
