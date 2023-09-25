@@ -1,6 +1,8 @@
 # Go library to shorten handling of impossible conditions
 [![Go Reference](https://pkg.go.dev/badge/github.com/ridge/must.svg)](https://pkg.go.dev/github.com/ridge/must)
 
+This repository is archived. See https://github.com/dottedmag/must for the current version.
+
     must.OK(os.Unsetenv("FOO"))
     bs := must.OK1(json.Marshal(dataStructureDefinedInCode))
     defer must.Do(f.Close)
